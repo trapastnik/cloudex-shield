@@ -3,14 +3,15 @@
 #
 #   zsh app/demo.sh        — VPN прыгает в другую страну → ❄︎ пауза → адрес вернулся (английский)
 #   zsh app/demo.sh ru     — то же на русском
+#   zsh app/demo.sh auto   — фазы по таймеру, без Enter (10 с 🇺🇸 → 12 с ❄︎BR → 10 с 🇺🇸), отсчёт в окне
 #
 # На время записи настоящие Cloudex Shield и Cloudex Guard выключаются (заморозка отпускается,
 # автозапуск приостанавливается), чтобы в строке меню был один значок без вашего адреса и чатов.
 # Фазы переключаются Enter в этом окне; настоящие программы не трогаются.
 set -e
 cd "$(dirname "$0")"
-LANG_UI=en
-for a in "$@"; do case "$a" in ru|en) LANG_UI=$a;; esac; done
+LANG_UI=en; AUTO=0
+for a in "$@"; do case "$a" in ru|en) LANG_UI=$a;; auto) AUTO=1;; esac; done
 PHASE="$(getconf DARWIN_USER_TEMP_DIR)cloudex-shield-demo/net-phase"
 APP="${TMPDIR:-/tmp}/Cloudex Shield Demo.app"
 ID=io.github.trapastnik.cloudex-shield.demo
@@ -61,13 +62,24 @@ cat <<'TXT'
   5. Остановить запись (■) — ДО следующего Enter: после него вернутся настоящие приложения.
 
 TXT
-read "?Enter — сеть прыгнула в Бразилию (❄︎)… "
-echo jump > "$PHASE"
-read "?Enter — адрес вернулся (🇺🇸)… "
-echo ok > "$PHASE"
-read "?Enter — закрыть демо и вернуть настоящие приложения… "
+if [ "$AUTO" = 1 ]; then
+  countdown() { for i in $(seq "$1" -1 1); do printf '\r  %s — ещё %2d с ' "$2" "$i"; sleep 1; done; printf '\n'; }
+  echo "Режим auto: включите запись сейчас."
+  countdown 10 "🇺🇸 US: откройте меню, наведите на «Network guard», Esc"
+  echo jump > "$PHASE"
+  countdown 12 "❄︎BR: откройте меню — красная строка «Paused», 3 секунды, Esc"
+  echo ok > "$PHASE"
+  countdown 10 "🇺🇸 US снова: откройте меню на 2 секунды, Esc, остановите запись"
+else
+  read "?Enter — сеть прыгнула в Бразилию (❄︎)… "
+  echo jump > "$PHASE"
+  read "?Enter — адрес вернулся (🇺🇸)… "
+  echo ok > "$PHASE"
+  read "?Enter — закрыть демо и вернуть настоящие приложения… "
+fi
 
 pkill -x CloudexShieldDemo 2>/dev/null || true
 for a in "${AGENTS[@]}"; do [ -f "$a" ] && launchctl bootstrap "gui/$(id -u)" "$a" 2>/dev/null || true; done
+for app in "Cloudex Shield" "Cloudex Guard"; do [ -d "$HOME/Applications/$app.app" ] && open -g "$HOME/Applications/$app.app"; done
 sleep 2
 pgrep -x CloudexShield >/dev/null && echo "Настоящий Cloudex Shield снова работает." || echo "Проверьте Cloudex Shield в ~/Applications."
