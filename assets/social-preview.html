@@ -1,0 +1,51 @@
+<!doctype html>
+<!-- Source for assets/social-preview.png (1280×640): GitHub social preview and og:image.
+     Render: Chrome --headless=new --window-size=1280,640 --screenshot=social-preview.png file://…/social-preview.html
+     The menu is a mock-up; addresses are documentation examples (RFC 5737). -->
+<html><head><meta charset="utf-8"><title>Cloudex Shield social preview</title>
+<style>
+html,body{margin:0;width:1280px;height:640px;overflow:hidden}
+body{background:#111113;color:#ececef;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",Inter,sans-serif;display:flex;align-items:center;gap:56px;padding:0 72px;box-sizing:border-box;position:relative}
+body:before{content:"";position:absolute;inset:0;background:radial-gradient(700px 420px at 92% 18%,rgba(34,211,238,.16),transparent 70%)}
+.l{flex:1;position:relative}
+.logo{display:flex;align-items:center;gap:18px;margin-bottom:34px}
+.logo img{width:76px;height:76px}
+.logo span{font-size:40px;font-weight:720;letter-spacing:-.02em}
+h1{font-size:54px;line-height:1.06;letter-spacing:-.03em;margin:0 0 22px;font-weight:760}
+h1 em{font-style:normal;color:#22d3ee}
+p{font-size:24px;line-height:1.4;color:#a1a1aa;margin:0 0 30px;max-width:600px}
+.tags{display:flex;gap:10px;flex-wrap:wrap}
+.tags b{font-weight:560;font-size:18px;color:#d4d4d8;border:1px solid #2e2e35;border-radius:999px;padding:7px 15px}
+.menu{position:relative;width:440px;background:rgba(36,36,40,.96);border:1px solid #3a3a42;border-radius:14px;box-shadow:0 30px 80px rgba(0,0,0,.55);padding:10px 0;font-size:17px}
+.bar{position:absolute;top:-46px;right:0;display:flex;align-items:center;gap:8px;background:#26262b;border-radius:8px;padding:6px 12px;font-size:16px;font-weight:600}
+.dot{width:10px;height:10px;border-radius:50%;display:inline-block}
+.sec{color:#8a8a90;font-size:13px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:9px 18px 5px}
+.row{display:flex;align-items:center;gap:11px;padding:7px 18px}
+.row .n{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.row .p{font-variant-numeric:tabular-nums;color:#d4d4d8;width:48px;text-align:right}
+.m{height:6px;width:70px;background:#3a3a42;border-radius:3px;overflow:hidden}.m i{display:block;height:100%;border-radius:3px}
+hr{border:0;border-top:1px solid #3a3a42;margin:7px 0}
+.lim{display:flex;justify-content:space-between;padding:6px 18px;color:#a1a1aa;font-size:15px}
+.red{color:#f87171}.mono{font-family:ui-monospace,Menlo,monospace;font-size:15px;color:#d4d4d8}.grey{color:#a1a1aa}
+</style></head><body>
+<div class="l">
+  <div class="logo"><img src="mark.svg" alt=""><span>Cloudex Shield</span></div>
+  <h1>VPN dropped?<br><em>Your apps wait.</em></h1>
+  <p>Shows where your Mac goes out from. Pauses the apps you choose when the address changes unexpectedly — and resumes them when it’s back.</p>
+  <div class="tags"><b>Free</b><b>Open source · MIT</b><b>Not a VPN</b><b>macOS 13+</b></div>
+</div>
+<div class="menu">
+  <div class="bar red" style="font-weight:800">❄︎BR</div>
+  <div class="row"><b>🇧🇷 BR</b><span class="mono">198.51.100.7</span></div>
+  <div class="row red">❄︎ Paused: ChatGPT, Claude</div>
+  <div class="row grey" style="font-size:15px">resumes when your address is allowed again</div>
+  <hr>
+  <div class="sec">Network guard</div>
+  <div class="row"><span>✓</span><span class="n">Claude</span></div>
+  <div class="row"><span>✓</span><span class="n">ChatGPT</span></div>
+  <div class="row"><span>✓</span><span class="n">🇺🇸 US · allowed</span></div>
+  <hr>
+  <div class="row">How others see us…</div>
+  <div class="row grey">↓ 182 Mbit/s · ↑ 41 Mbit/s · 38 ms</div>
+</div>
+</body></html>

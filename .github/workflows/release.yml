@@ -1,0 +1,41 @@
+# Релиз собирается здесь, на серверах GitHub, из открытого кода этого репозитория — не на чьём-то
+# компьютере. К каждому файлу GitHub выпускает подписанное подтверждение происхождения (build
+# provenance): любой может убедиться, что скачанный файл собран именно из этого кода, командой
+#   gh attestation verify CloudexShield.dmg --repo trapastnik/cloudex-shield
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+  id-token: write
+  attestations: write
+
+jobs:
+  build:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build universal app, DMG and archive
+        run: zsh app/release.sh "${GITHUB_REF_NAME#v}"
+
+      - name: Attest build provenance
+        uses: actions/attest-build-provenance@v2
+        with:
+          subject-path: |
+            dist/CloudexShield.dmg
+            dist/CloudexShield-macos.zip
+
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          files="dist/CloudexShield.dmg dist/CloudexShield-macos.zip dist/SHA256SUMS.txt"
+          if gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1; then
+            gh release upload "$GITHUB_REF_NAME" $files --clobber
+          else
+            gh release create "$GITHUB_REF_NAME" $files --title "Cloudex Shield ${GITHUB_REF_NAME#v}" --notes-file RELEASE_NOTES.md
+          fi
