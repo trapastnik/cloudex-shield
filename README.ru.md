@@ -5,6 +5,8 @@
 
 <p align="center"><a href="https://github.com/trapastnik/cloudex-shield/releases/latest">Скачать</a> · <a href="#установка">Установка</a> · <a href="#ваши-данные-остаются-вашими">Приватность</a> · <a href="#поддержать">Поддержать</a> · <a href="README.md">English</a> · <a href="https://medfab-dev.tech/ru/cloudex-shield/">Сайт</a></p>
 
+<p align="center"><img src="assets/demo.gif" alt="Меню Cloudex Shield: выбор программ и разрешённых стран; выход VPN прыгает в Бразилию, Claude и ChatGPT на паузе; адрес вернулся" width="700"><br><sub>Записано в демо-режиме приложения (<code>app/demo.sh</code>): без настоящей сети, адреса из диапазона для документации.</sub></p>
+
 > Cloudex Shield — независимый проект с открытым кодом. Anthropic и OpenAI его не делали, не одобряли и не поддерживают. Claude и Claude Code — товарные знаки Anthropic, ChatGPT — товарный знак OpenAI; здесь они названы только как примеры программ, которые можно ставить на паузу.
 
 ## Проблема и решение

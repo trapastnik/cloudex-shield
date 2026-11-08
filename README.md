@@ -5,6 +5,8 @@ A small, free macOS menu bar app: a kill switch for single apps. Not a VPN.</p>
 
 <p align="center"><a href="https://github.com/trapastnik/cloudex-shield/releases/latest">Download</a> · <a href="#install">Install</a> · <a href="#your-data-stays-yours">Privacy</a> · <a href="#support">Support</a> · <a href="README.ru.md">Русский</a> · <a href="https://medfab-dev.tech/cloudex-shield/">Website</a></p>
 
+<p align="center"><img src="assets/demo.gif" alt="Cloudex Shield menu: choose apps and allowed countries; the VPN exit jumps to Brazil and Claude and ChatGPT are paused; the address is back" width="700"><br><sub>Recorded in the app’s demo mode (<code>app/demo.sh</code>): no real network, documentation IP addresses.</sub></p>
+
 > Cloudex Shield is an independent open-source project. It is not made, endorsed or supported by Anthropic or OpenAI. Claude and Claude Code are trademarks of Anthropic, ChatGPT is a trademark of OpenAI; they are named here only as examples of apps you can pause.
 
 ## The problem, and the fix
